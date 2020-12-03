@@ -1,24 +1,20 @@
 /*
  * @Author: your name
- * @Date: 2020-12-02 17:27:35
- * @LastEditTime: 2020-12-03 13:47:35
+ * @Date: 2020-12-03 16:11:01
+ * @LastEditTime: 2020-12-03 17:02:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \document\webpack-demo\src\index.js
+ * @FilePath: \webpack-learn\webpack-demo\src\index.js
  */
-import _ from 'lodash';
-import printMe from './print'
-function component() {
+async function getComponent() {
     const element = document.createElement('div');
-    const btn = document.createElement('button');
-    btn.innerHTML = 'click me and check the console';
-    btn.onclick = printMe;
-    element.appendChild(btn);
-    // element.innerHTML = _.join(['hello','webpack','中文测试'],' ');
-    // element.innerHTML = 'hello, webpack';
-    element.classList.add('hello');
-
+    const {default:_} = await import('lodash');
+    const Prefetch = await import(/* webpackPrefetch: true */ './importComponent');
+    console.log(Prefetch);
+    element.innerHTML = _.join(['hello','webpack'], ' ');
     return element;
 }
 
-document.body.appendChild(component());
+getComponent().then((component) => {
+    document.body.appendChild(component);
+})
