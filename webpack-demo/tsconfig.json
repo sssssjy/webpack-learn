@@ -1,0 +1,21 @@
+/*
+ * @Author: your name
+ * @Date: 2020-12-04 16:13:03
+ * @LastEditTime: 2020-12-04 16:14:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \webpack-learn\webpack-demo\tsconfig.ts
+ */
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es5",
+        "jsx": "react"
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}
