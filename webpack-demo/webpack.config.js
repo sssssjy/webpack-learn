@@ -1,12 +1,33 @@
+/*
+ * @Author: your name
+ * @Date: 2020-12-03 16:11:14
+ * @LastEditTime: 2020-12-04 11:31:42
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \webpack-learn\webpack-demo\webpack.config.js
+ */
 const path = require('path');
-module.exports = env => {
-    console.log('NODE_ENV:',env.NODE_ENV);
-    console.log('Production:',env.production);
-    return {
-        entry:'./src/index.js',
-        output:{
-            filename:'bundle.js',
-            path:path.resolve(__dirname,'dist')
-        }
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { default: printMe } = require('./src/print');
+
+module.exports = {
+    entry:{
+        app:'./src/index.js'
+    },
+    devtool:'inline-source-map',
+    devServer:{
+        contentBase:'./dist',
+        hot:true//启用热更新
+    },
+    plugins:[
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title:'hot module replacement'
+        })
+    ],
+    output:{
+        filename:'[name].bundle.js',
+        path:path.resolve(__dirname,'dist')
     }
 }
