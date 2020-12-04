@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-03 16:11:01
- * @LastEditTime: 2020-12-04 11:38:58
+ * @LastEditTime: 2020-12-04 11:44:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webpack-learn\webpack-demo\src\index.js
@@ -21,9 +21,9 @@ function component() {
 
 document.body.appendChild(component());
 
-// if (module.hot) {
-//     module.hot.accept('./print.js', function () {
-//         console.log('accepting the upgrade printMe module');
-//         printMe();
-//     })
-// }
+if (module.hot) {
+    module.hot.accept('./print.js', function () {
+        console.log('accepting the upgrade printMe module');
+        printMe();
+    })
+}

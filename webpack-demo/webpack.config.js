@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-03 16:11:14
- * @LastEditTime: 2020-12-04 11:31:42
+ * @LastEditTime: 2020-12-04 11:42:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webpack-learn\webpack-demo\webpack.config.js
@@ -9,7 +9,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const { default: printMe } = require('./src/print');
 
 module.exports = {
     entry:{
