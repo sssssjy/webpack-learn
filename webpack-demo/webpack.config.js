@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-03 16:11:14
- * @LastEditTime: 2020-12-04 11:42:48
+ * @LastEditTime: 2020-12-04 14:18:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webpack-learn\webpack-demo\webpack.config.js
@@ -18,6 +18,12 @@ module.exports = {
     devServer:{
         contentBase:'./dist',
         hot:true//启用热更新
+    },
+    module:{
+        rules:[{
+            test:/\.css$/i,
+            use:['style-loader','css-loader']
+        }]
     },
     plugins:[
         new CleanWebpackPlugin(),
