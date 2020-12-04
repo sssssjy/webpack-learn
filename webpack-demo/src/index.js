@@ -1,20 +1,27 @@
 /*
  * @Author: your name
  * @Date: 2020-12-03 16:11:01
- * @LastEditTime: 2020-12-03 17:02:56
+ * @LastEditTime: 2020-12-04 15:42:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webpack-learn\webpack-demo\src\index.js
  */
-async function getComponent() {
+import _ from 'lodash';
+function component() {
     const element = document.createElement('div');
-    const {default:_} = await import('lodash');
-    const Prefetch = await import(/* webpackPrefetch: true */ './importComponent');
-    console.log(Prefetch);
-    element.innerHTML = _.join(['hello','webpack'], ' ');
-    return element;
+    const button = document.createElement('button');
+    const br = document.createElement('br');
+
+    button.innerHTML = 'click me and look at the console';
+    element.appendChild(br);
+    element.appendChild(button);
+
+    button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+        const print = module.default;
+        print();
+    })
+
+    return element
 }
 
-getComponent().then((component) => {
-    document.body.appendChild(component);
-})
+document.body.appendChild(component())
