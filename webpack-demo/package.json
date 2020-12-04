@@ -1,6 +1,8 @@
 {
   "name": "webpack-demo",
-  "sideEffects":["*.css"],
+  "sideEffects": [
+    "*.css"
+  ],
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
@@ -13,16 +15,17 @@
     "webpack": "^5.9.0",
     "webpack-cli": "^4.2.0",
     "webpack-dev-middleware": "^4.0.2",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.4.0"
   },
   "dependencies": {
     "lodash": "^4.17.20"
   },
   "scripts": {
     "test": "echo \"Error:no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch",
-    "start": "webpack serve",
+    "start": "webpack serve --config webpack.dev.js",
     "server": "node server.js"
   }
 }
