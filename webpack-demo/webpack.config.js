@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-03 09:42:10
- * @LastEditTime: 2020-12-03 16:39:14
+ * @LastEditTime: 2020-12-04 16:46:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \document\webpack-demo\webpack.config.js
@@ -9,6 +9,9 @@
 const path = require('path');
 //entry代码分离
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+
 module.exports = {
     mode:'development',
     entry:{
@@ -41,6 +44,15 @@ module.exports = {
     plugins:[
         new CleanWebpackPlugin({
             cleanStaleWebpackAssets:false
+        }),
+        new HtmlWebpackPlugin({
+            title:'progressive web application'
+        }),
+        new WorkboxPlugin.GenerateSW({
+            //快速启用 serviceWorkers
+            //不遗留旧的 ServiceWorkers
+            clientsClaim:true,
+            skipWaiting:true
         })
     ]
 }
