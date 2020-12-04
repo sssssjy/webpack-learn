@@ -1,18 +1,22 @@
 /*
  * @Author: your name
  * @Date: 2020-12-03 16:11:01
- * @LastEditTime: 2020-12-04 09:55:36
+ * @LastEditTime: 2020-12-04 10:01:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webpack-learn\webpack-demo\src\index.js
  */
-import Print from './print'
-import _ from 'lodash'
-function getComponent() {
-    const element = document.createElement('div');
-    element.innerHTML = _.join(['hello','webpack'],' ');
-    element.onclick = Print.bind(null,'hello webpack click');
-    return element;
+import _ from 'lodash';
+import numRef from './ref.json';
+
+export function numToWord(num) {
+    return _.reduce(numRef,(accum,ref) => {
+        return ref.num === num ? ref.word : accum;
+    }, '');
 }
 
-document.body.appendChild(getComponent())
+export function wordToNum(word) {
+    return _.reduce(numRef,(accum, ref) => {
+        return ref.word === word && word.toLowerCase() ? ref.num : accum
+    }, -1);
+}
