@@ -1,35 +1,33 @@
 /*
  * @Author: your name
  * @Date: 2020-12-04 15:36:09
- * @LastEditTime: 2020-12-07 10:25:51
+ * @LastEditTime: 2020-12-07 14:41:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webpack-learn\webpack-demo\webpack.config.js
  */
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const path = require('path');
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
-    mode:'production',
-    entry:{
-        home: ['./src/home/index.js', './src/home/index.css'],
-        account: ['./src/account/index.js', './src/account/index.css']
-    },
+    entry:'./src/index.jsx',
     output:{
-        filename:'[name].js'
+        path:path.resolve(__dirname,'dist'),
+        chunkFilename:'app.js'
     },
     module:{
-        rules:[{
-            test:/\.css$/,
-            use:[MiniCssExtractPlugin.loader,'css-loader']
-            // use:[
-            //     process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
-            //     'css-loader'
-            // ]
-        }]
+        rules: [{
+            test:/\.jsx$/,
+            exclude:/[\\/]node_modules[\\/]/,
+            use:{
+                loader:'babel-loader',
+                options:{
+                    presets: ['@babel/preset-env','@babel/preset-react']
+                }
+            }
+        },]
     },
     plugins:[
-        new MiniCssExtractPlugin({
-            filename: '[name].css'
-        })
+        new CleanWebpackPlugin()
     ]
 }
