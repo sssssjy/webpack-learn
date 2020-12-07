@@ -1,58 +1,35 @@
 /*
  * @Author: your name
- * @Date: 2020-12-03 09:42:10
- * @LastEditTime: 2020-12-04 16:46:36
+ * @Date: 2020-12-04 15:36:09
+ * @LastEditTime: 2020-12-07 10:25:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \document\webpack-demo\webpack.config.js
+ * @FilePath: \webpack-learn\webpack-demo\webpack.config.js
  */
-const path = require('path');
-//entry代码分离
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
-    mode:'development',
+    mode:'production',
     entry:{
-        // 缺点：如果入口chunk包含重复模块，将会被引入到各个bundle中
-        // 不灵活，不能动态将核心应用程序逻辑中的代码拆分
-        index:'./src/index.js',
-        another:'./src/another-module.js'
-
-        //使用dependOn 将公共依赖抽离
-        // index:{
-        //     import:'./src/index.js',
-        //     dependOn:'shared'
-        // },
-        // another:{
-        //     import: './src/another-module.js',
-        //     dependOn:'shared'
-        // },
-        // shared: ['lodash']
+        home: ['./src/home/index.js', './src/home/index.css'],
+        account: ['./src/account/index.js', './src/account/index.css']
     },
     output:{
-        filename:'[name].bundle.js',
-        path:path.resolve(__dirname,'dist')
+        filename:'[name].js'
     },
-    optimization:{
-        //splitChunksPlugin 将公共依赖的模块提取到已有的入口chunk中 或新生成的chunk
-        splitChunks:{
-            chunks:'all'
-        }
+    module:{
+        rules:[{
+            test:/\.css$/,
+            use:[MiniCssExtractPlugin.loader,'css-loader']
+            // use:[
+            //     process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+            //     'css-loader'
+            // ]
+        }]
     },
     plugins:[
-        new CleanWebpackPlugin({
-            cleanStaleWebpackAssets:false
-        }),
-        new HtmlWebpackPlugin({
-            title:'progressive web application'
-        }),
-        new WorkboxPlugin.GenerateSW({
-            //快速启用 serviceWorkers
-            //不遗留旧的 ServiceWorkers
-            clientsClaim:true,
-            skipWaiting:true
+        new MiniCssExtractPlugin({
+            filename: '[name].css'
         })
     ]
 }
