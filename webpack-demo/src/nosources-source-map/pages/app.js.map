@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "sources": [
+    "webpack://webpack-demo/./src/app.js"
+  ],
+  "names": [
+    "console",
+    "log",
+    "name"
+  ],
+  "mappings": "wIAQAA,QAAQC,IAAI,OACZ,SACIC,KAAK",
+  "file": "pages/app.js",
+  "sourceRoot": ""
+}

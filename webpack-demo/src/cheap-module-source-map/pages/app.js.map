@@ -1,0 +1,7 @@
+{
+    "version": 3,
+    "file": "pages/app.js",
+    "sources": ["webpack://webpack-demo/pages/app.js"],
+    "mappings": "AAAA",
+    "sourceRoot": ""
+}

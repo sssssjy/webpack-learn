@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-04 15:36:09
- * @LastEditTime: 2020-12-09 14:25:07
+ * @LastEditTime: 2020-12-09 16:43:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webpack-learn\webpack-demo\webpack.config.js
@@ -10,8 +10,6 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
-
 module.exports = {
     entry:{
         main:{
@@ -19,10 +17,12 @@ module.exports = {
             filename:'pages/[name][contenthash:6].js'
         }
     },
+    devtool:'hidden-source-map',
     devServer:{
         contentBase:path.join(__dirname,'notExit'),
         compress:true,
-        port:9000
+        port:9000,
+        inline:false,
     },
     output:{
         path:path.resolve(__dirname,'dist'),
