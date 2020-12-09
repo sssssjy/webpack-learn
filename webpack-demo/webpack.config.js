@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-04 15:36:09
- * @LastEditTime: 2020-12-07 16:18:46
+ * @LastEditTime: 2020-12-09 10:19:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webpack-learn\webpack-demo\webpack.config.js
@@ -19,9 +19,14 @@ module.exports = {
             filename:'pages/[name][contenthash:6].js'
         }
     },
+    devServer:{
+        contentBase:path.join(__dirname,'dist'),
+        compress:true,
+        port:9000
+    },
     output:{
         path:path.resolve(__dirname,'dist'),
-        chunkFilename:'app.js'
+        chunkFilename:'pages/app.js'
     },
     module:{
         rules: [{
