@@ -1,16 +1,24 @@
 /*
  * @Author: your name
  * @Date: 2020-12-04 15:36:09
- * @LastEditTime: 2020-12-07 14:41:31
+ * @LastEditTime: 2020-12-07 16:18:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \webpack-learn\webpack-demo\webpack.config.js
  */
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+
 
 module.exports = {
-    entry:'./src/index.jsx',
+    entry:{
+        main:{
+            import:'./src/index.jsx',
+            filename:'pages/[name][contenthash:6].js'
+        }
+    },
     output:{
         path:path.resolve(__dirname,'dist'),
         chunkFilename:'app.js'
@@ -28,6 +36,7 @@ module.exports = {
         },]
     },
     plugins:[
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin()
     ]
 }
